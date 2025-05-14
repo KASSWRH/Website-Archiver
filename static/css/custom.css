@@ -1,0 +1,62 @@
+/* Additional custom styles */
+.progress {
+    height: 25px;
+}
+
+.progress-bar {
+    transition: width 0.5s ease-in-out;
+}
+
+.task-details {
+    margin-top: 2rem;
+}
+
+.alert-fixed {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    z-index: 9999;
+}
+
+.result-card {
+    transition: all 0.3s ease;
+}
+
+.result-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.stat-card {
+    flex: 1;
+    min-width: 200px;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    background-color: var(--bs-dark);
+    border: 1px solid var(--bs-gray-700);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.stat-label {
+    color: var(--bs-gray-500);
+    font-size: 0.9rem;
+}
+
+.error-list {
+    max-height: 200px;
+    overflow-y: auto;
+}

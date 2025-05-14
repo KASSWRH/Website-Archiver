@@ -1,0 +1,97 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card bg-dark border-secondary shadow">
+            <div class="card-header bg-dark border-secondary">
+                <h2 class="mb-0">
+                    <i class="fas fa-globe me-2"></i>Website Archiver
+                </h2>
+            </div>
+            <div class="card-body">
+                <p class="lead text-light">Download and save entire websites with their structure and assets for offline use.</p>
+                
+                {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+                {% endif %}
+                
+                <form id="scrape-form" action="{{ url_for('scrape') }}" method="post" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="url" class="form-label">Website URL</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-link"></i></span>
+                            <input type="url" class="form-control" id="url" name="url" placeholder="https://example.com" required>
+                            <div class="invalid-feedback">
+                                Please enter a valid URL.
+                            </div>
+                        </div>
+                        <div class="form-text text-muted">Enter the full URL including http:// or https://</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="max_depth" class="form-label">Crawl Depth</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                            <select class="form-select" id="max_depth" name="max_depth">
+                                <option value="1">Level 1 - Current page only</option>
+                                <option value="2">Level 2 - Current page + linked pages</option>
+                                <option value="3">Level 3 - Deep crawl (may take longer)</option>
+                                <option value="5">Level 5 - Very deep crawl (use with caution)</option>
+                            </select>
+                        </div>
+                        <div class="form-text text-muted">Deeper levels will download more pages but take longer</div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="download_assets" name="download_assets" checked>
+                            <label class="form-check-label" for="download_assets">Download assets (CSS, JavaScript, images)</label>
+                        </div>
+                        <div class="form-text text-muted">Turn off to download only HTML files</div>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-download me-2"></i>Start Archiving
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="card bg-dark border-secondary shadow mt-4">
+            <div class="card-header bg-dark border-secondary">
+                <h4 class="mb-0"><i class="fas fa-info-circle me-2"></i>How It Works</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="text-center mb-2">
+                            <i class="fas fa-link fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="text-center">1. Enter URL</h5>
+                        <p class="text-muted text-center">Provide the website address you want to archive</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="text-center mb-2">
+                            <i class="fas fa-spider fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="text-center">2. Crawler Works</h5>
+                        <p class="text-muted text-center">Our tool crawls through the website, following links</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="text-center mb-2">
+                            <i class="fas fa-save fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="text-center">3. Download All</h5>
+                        <p class="text-muted text-center">Save the complete website for offline browsing</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
